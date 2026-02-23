@@ -38,7 +38,19 @@ internal sealed record Usage(
     [property: JsonPropertyName("completion_tokens")] int? CompletionTokens,
     [property: JsonPropertyName("total_tokens")] int? TotalTokens,
     [property: JsonPropertyName("input_tokens")] int? InputTokens,
-    [property: JsonPropertyName("output_tokens")] int? OutputTokens
+    [property: JsonPropertyName("output_tokens")] int? OutputTokens,
+    [property: JsonPropertyName("cached_input_tokens")] int? CachedInputTokens = null,
+    [property: JsonPropertyName("audio_tokens")] int? AudioTokens = null,
+    [property: JsonPropertyName("cached_audio_input_tokens")] int? CachedAudioInputTokens = null,
+    [property: JsonPropertyName("prompt_tokens_details")] PromptTokensDetails? PromptTokensDetails = null
+);
+
+internal sealed record PromptTokensDetails(
+    [property: JsonPropertyName("cached_tokens")] int? CachedTokens,
+    [property: JsonPropertyName("audio_tokens")] int? AudioTokens,
+    // Some providers may use different naming for cached audio tokens.
+    [property: JsonPropertyName("cached_audio_tokens")] int? CachedAudioTokens = null,
+    [property: JsonPropertyName("cached_audio_input_tokens")] int? CachedAudioInputTokens = null
 );
 
 internal sealed record ContentPart(

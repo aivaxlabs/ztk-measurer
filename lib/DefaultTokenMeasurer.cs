@@ -2,7 +2,7 @@ using CountTokens.Content;
 
 namespace CountTokens
 {
-    public sealed class DefaultTokenMeasurer : ITokenMeasurer
+    public sealed class GeminiV2TokenMeasurer : ITokenMeasurer
     {
         private static readonly GeminiV2TokenMeasurer Impl = new();
 

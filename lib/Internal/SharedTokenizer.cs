@@ -10,12 +10,17 @@ namespace CountTokens.Internal
             LazyThreadSafetyMode.ExecutionAndPublication
         );
 
+        // Heuristics for extreme cases only. For typical prompts, calling the tokenizer is both
+        // faster (no pre-scan) and more accurate.
+        private const int RepetitiveHeuristicMinChars = 200_000;
+        private const int RepetitiveHeuristicMinRun = 8192;
+
         public static int CountTokens(string? text)
         {
             if (string.IsNullOrEmpty(text))
                 return 0;
 
-            if (TryEstimateHighlyRepetitiveText(text, out int repetitiveEstimate))
+            if (text.Length >= RepetitiveHeuristicMinChars && TryEstimateHighlyRepetitiveText(text, out int repetitiveEstimate))
                 return repetitiveEstimate;
 
             return Tokenizer.Value.CountTokens(text);
@@ -47,11 +52,11 @@ namespace CountTokens.Internal
         {
             tokens = 0;
 
-            if (text.Length < 1024)
+            if (text.Length < RepetitiveHeuristicMinChars)
                 return false;
 
-            int maxRun = GetMaxCharRunLength(text);
-            if (maxRun < 512)
+            int maxRun = GetMaxCharRunLengthAtLeast(text, RepetitiveHeuristicMinRun);
+            if (maxRun < RepetitiveHeuristicMinRun)
                 return false;
 
             int nonRunChars = text.Length - maxRun;
@@ -60,7 +65,7 @@ namespace CountTokens.Internal
             return true;
         }
 
-        private static int GetMaxCharRunLength(string text)
+        private static int GetMaxCharRunLengthAtLeast(string text, int stopAt)
         {
             int max = 1;
             int current = 1;
@@ -71,7 +76,12 @@ namespace CountTokens.Internal
                 {
                     current++;
                     if (current > max)
+                    {
                         max = current;
+
+                        if (max >= stopAt)
+                            return max;
+                    }
                 }
                 else
                 {

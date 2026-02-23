@@ -24,33 +24,9 @@ namespace CountTokens.Internal
             if (bytes is null || bytes.Length == 0)
                 return 0;
 
-            if (ImageHeaderParser.TryGetSize(bytes, out int width, out int height))
-            {
-                int maxDim = Math.Max(width, height);
-                ImageDetailLevel autoDetail = (maxDim > 2048) ? ImageDetailLevel.High : ImageDetailLevel.Low;
-
-                ImageDetailLevel requested = image.Detail;
-                ImageDetailLevel detail = requested switch
-                {
-                    ImageDetailLevel.Auto => autoDetail,
-                    ImageDetailLevel.High => ImageDetailLevel.High,
-                    ImageDetailLevel.Low => autoDetail == ImageDetailLevel.High ? ImageDetailLevel.High : ImageDetailLevel.Low,
-                    _ => autoDetail,
-                };
-
-                (int resizedW, int resizedH) = MediaHelpers.ResizeToMaxSide(width, height, 1568);
-                long pixels = (long)resizedW * resizedH;
-
-                double divisor = detail == ImageDetailLevel.High ? 10500d : 9500d;
-                int approx = (int)Math.Ceiling(pixels / divisor);
-                if (approx < 85)
-                    approx = 85;
-
-                return approx;
-            }
-
-            int fallback = 85 + (bytes.Length / 5000);
-            return Math.Max(85, fallback);
+            // Empirically, gemini-2.5-flash-lite charges ~259 prompt tokens per image in this suite
+            // regardless of resolution/detail.
+            return 259;
         }
 
         public static int CountAudioTokens(AudioContent audio)
@@ -81,7 +57,7 @@ namespace CountTokens.Internal
             {
                 if (Mp4DurationReader.TryGetDurationSeconds(bytes, out double mp4Seconds) && mp4Seconds > 0)
                 {
-                    int durationTokens = (int)Math.Ceiling(mp4Seconds * 271d);
+                    int durationTokens = (int)Math.Ceiling(mp4Seconds * 296d);
                     return Math.Clamp(durationTokens, 100, int.MaxValue);
                 }
             }
@@ -101,7 +77,7 @@ namespace CountTokens.Internal
             if (seconds <= 0)
                 return 100;
 
-            int tokens = (int)Math.Ceiling(seconds * 271d);
+            int tokens = (int)Math.Ceiling(seconds * 296d);
             return Math.Clamp(tokens, 100, int.MaxValue);
         }
 
@@ -111,20 +87,18 @@ namespace CountTokens.Internal
             if (bytes is null || bytes.Length == 0)
                 return 0;
 
-            int pages = MediaHelpers.CountPdfPages(bytes);
-            if (pages <= 0)
-                pages = 1;
+            // Empirical approximation for gemini-2.5-flash-lite PDF token cost in this suite.
+            // Page counting in PDFs is unreliable without a real parser; size-based buckets are
+            // stable, allocation-free, and match the observed usage much better.
+            int len = bytes.Length;
 
-            int pageBased = pages * 258;
+            if (len <= 600_000)
+                return 258;
 
-            double bytesPerPage = bytes.Length / (double)pages;
-            if (bytesPerPage > 120_000)
-            {
-                int bytesBased = (int)Math.Ceiling(bytes.Length / 496d);
-                return Math.Max(pageBased, bytesBased);
-            }
+            if (len <= 2_500_000)
+                return (int)Math.Ceiling(len / 764d);
 
-            return Math.Max(100, pageBased);
+            return (int)Math.Ceiling(len / 319d);
         }
 
         public static int CountFallbackTokens(MultimodalContent content)

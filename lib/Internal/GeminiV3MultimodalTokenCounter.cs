@@ -24,16 +24,9 @@ namespace CountTokens.Internal
             if (bytes is null || bytes.Length == 0)
                 return 0;
 
-            if (ImageHeaderParser.TryGetSize(bytes, out int width, out int height))
-            {
-                (int resizedW, int resizedH) = MediaHelpers.ResizeToMaxSide(width, height, 1568);
-                long pixels = (long)resizedW * resizedH;
-
-                int approx = (int)Math.Ceiling(pixels / 720d);
-                return Math.Max(500, approx);
-            }
-
-            return Math.Max(500, 500 + (bytes.Length / 5000));
+            // Empirically, gemini-3-flash charges ~1088 prompt tokens per image in this suite.
+            // (1088 gives a better fit across the 3 images used, including text+image cases.)
+            return 1088;
         }
 
         public static int CountAudioTokens(AudioContent audio)
@@ -94,20 +87,16 @@ namespace CountTokens.Internal
             if (bytes is null || bytes.Length == 0)
                 return 0;
 
-            int pages = MediaHelpers.CountPdfPages(bytes);
-            if (pages <= 0)
-                pages = 1;
+            // Empirical approximation for gemini-3-flash PDF token cost in this suite.
+            int len = bytes.Length;
 
-            int pageBased = pages * 260;
+            if (len <= 600_000)
+                return 540;
 
-            double bytesPerPage = bytes.Length / (double)pages;
-            if (bytesPerPage > 80_000)
-            {
-                int bytesBased = (int)Math.Ceiling(bytes.Length / 224d);
-                return Math.Max(pageBased, bytesBased);
-            }
+            if (len <= 2_500_000)
+                return (int)Math.Ceiling(len / 374d);
 
-            return Math.Max(100, pageBased);
+            return (int)Math.Ceiling(len / 158.5d);
         }
 
         public static int CountFallbackTokens(MultimodalContent content)

@@ -106,11 +106,23 @@ internal sealed class Runner
                     return new AccuracyRow(test.Name, null, estimated, $"Request too large ({json.Length} bytes > {maxBytes})", null);
             }
 
-            ChatCompletionResponse resp = await _client.CreateChatCompletionAsync(request, cancellationToken);
+            ChatCompletionResponse resp = await CreateWithRetryAsync(request, cancellationToken);
 
-            int? actual = resp.Usage?.PromptTokens ?? resp.Usage?.InputTokens;
+            int? actual = ComputeActualInputTokens(resp.Usage);
             if (actual is null)
-                return new AccuracyRow(test.Name, null, estimated, "Response missing usage.prompt_tokens/input_tokens", null);
+                return new AccuracyRow(test.Name, null, estimated, "Response missing usage input token fields", null);
+
+            if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("AIVAX_DEBUG_USAGE")))
+            {
+                Usage? u = resp.Usage;
+                Console.WriteLine(
+                    $"[usage] case='{test.Name}' model='{_model}' " +
+                    $"prompt={u?.PromptTokens} input={u?.InputTokens} cached_input={u?.CachedInputTokens} " +
+                    $"audio={u?.AudioTokens} cached_audio={u?.CachedAudioInputTokens} " +
+                    $"details.cached={u?.PromptTokensDetails?.CachedTokens} details.audio={u?.PromptTokensDetails?.AudioTokens} " +
+                    $"details.cached_audio={u?.PromptTokensDetails?.CachedAudioTokens ?? u?.PromptTokensDetails?.CachedAudioInputTokens} => actual={actual}"
+                );
+            }
 
             return new AccuracyRow(test.Name, actual, estimated, null, null);
         }
@@ -118,11 +130,61 @@ internal sealed class Runner
         {
             return new AccuracyRow(test.Name, null, estimated, null, $"API error HTTP {api.StatusCode}: {Trim(api.ResponseBody, 500)}");
         }
+        catch (TaskCanceledException)
+        {
+            return new AccuracyRow(test.Name, null, estimated, null, "Request timed out");
+        }
         catch (Exception ex)
         {
             return new AccuracyRow(test.Name, null, estimated, null, "Unhandled error: " + ex.Message);
         }
     }
+
+    private async Task<ChatCompletionResponse> CreateWithRetryAsync(ChatCompletionRequest request, CancellationToken cancellationToken)
+    {
+        if (_client is null)
+            throw new InvalidOperationException("Runner misconfigured: client is null");
+
+        const int maxAttempts = 3;
+
+        for (int attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            try
+            {
+                return await _client.CreateChatCompletionAsync(request, cancellationToken);
+            }
+            catch (AivaxApiException ex) when (attempt < maxAttempts && IsTransientStatus(ex.StatusCode))
+            {
+                int delayMs = attempt switch
+                {
+                    1 => 500,
+                    2 => 1500,
+                    _ => 2500,
+                };
+
+                await Task.Delay(delayMs, cancellationToken);
+            }
+            catch (TaskCanceledException) when (attempt < maxAttempts)
+            {
+                int delayMs = attempt switch
+                {
+                    1 => 500,
+                    2 => 1500,
+                    _ => 2500,
+                };
+
+                await Task.Delay(delayMs, cancellationToken);
+            }
+        }
+
+        // Unreachable: loop either returns or throws on the last attempt.
+        throw new InvalidOperationException("Retry loop exhausted unexpectedly.");
+    }
+
+    private static bool IsTransientStatus(int statusCode)
+        => statusCode is 408 or 429 or 500 or 502 or 503 or 504 or 520 or 521 or 522 or 523 or 524;
 
     private static string Trim(string s, int max)
     {
@@ -130,6 +192,36 @@ internal sealed class Runner
             return s;
 
         return s[..max] + "…";
+    }
+
+    private static int? ComputeActualInputTokens(Usage? usage)
+    {
+        if (usage is null)
+            return null;
+
+        // Desired definition for the suite:
+        // input_tokens + cached_input_tokens + audio_tokens + cached_audio_input_tokens
+        // IMPORTANT: Some providers expose cached/audio as a BREAKDOWN of prompt_tokens
+        // (e.g. prompt_tokens_details.cached_tokens). Those are NOT additive.
+
+        bool hasAdditiveFields = usage.InputTokens is not null
+            || usage.CachedInputTokens is not null
+            || usage.AudioTokens is not null
+            || usage.CachedAudioInputTokens is not null;
+
+        if (hasAdditiveFields)
+        {
+            int input = usage.InputTokens ?? 0;
+            int cachedInput = usage.CachedInputTokens ?? 0;
+            int audio = usage.AudioTokens ?? 0;
+            int cachedAudio = usage.CachedAudioInputTokens ?? 0;
+
+            int total = input + cachedInput + audio + cachedAudio;
+            return total > 0 ? total : null;
+        }
+
+        // Fallback: prompt_tokens is already the total input tokens (including cached/audio if any).
+        return usage.PromptTokens ?? usage.InputTokens;
     }
 }
 

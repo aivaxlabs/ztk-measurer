@@ -6,14 +6,14 @@ using System.Diagnostics;
 static ITokenMeasurer CreateMeasurer(string model)
 {
     if (string.IsNullOrWhiteSpace(model))
-        return new DefaultTokenMeasurer();
+        return new GeminiV2TokenMeasurer();
 
     string m = model.Trim();
 
     return m switch
     {
-        "@google/gemini-2.0-flash-lite" => new DefaultTokenMeasurer(),
-        "@google/gemini-2.5-flash-lite" => new DefaultTokenMeasurer(),
+        "@google/gemini-2.0-flash-lite" => new GeminiV2TokenMeasurer(),
+        "@google/gemini-2.5-flash-lite" => new GeminiV2TokenMeasurer(),
         "@google/gemini-3-flash" => new GeminiV3TokenMeasurer(),
 
         "@anthropic/claude-4.5-haiku" => new ClaudeV4TokenMeasurer(),
@@ -27,7 +27,7 @@ static ITokenMeasurer CreateMeasurer(string model)
 
         "@qwen/qwen3-32b" => new QwenV3TokenMeasurer(),
 
-        _ => new DefaultTokenMeasurer(),
+        _ => new GeminiV2TokenMeasurer(),
     };
 }
 
@@ -141,6 +141,7 @@ static void PrintUsage()
     Console.WriteLine("  --live                 Calls the LLM endpoint and computes accuracy");
     Console.WriteLine("  --all-models           Runs the suite for all known models (overrides --model)");
     Console.WriteLine("  --model <name>          Overrides model (default: @google/gemini-2.5-flash-lite)");
+    Console.WriteLine("  --case <name>           Runs only one test case by exact name (optional)");
     Console.WriteLine("  --endpoint <url>        Overrides endpoint (default: https://inference.aivax.net/v1/chat/completions)");
     Console.WriteLine("  --per-message-overhead <int>  Adds a fixed overhead per message (default: 0)");
     Console.WriteLine();
@@ -159,6 +160,7 @@ bool live = HasFlag(cliArgs, "--live");
 bool allModels = HasFlag(cliArgs, "--all-models");
 
 string model = GetArg(cliArgs, "--model") ?? "@google/gemini-2.5-flash-lite";
+string? caseName = GetArg(cliArgs, "--case");
 string endpointRaw = GetArg(cliArgs, "--endpoint") ?? "https://inference.aivax.net/v1/chat/completions";
 
 int perMessageOverhead = 0;
@@ -198,6 +200,21 @@ if (!Directory.Exists(mediaDir))
 }
 
 IReadOnlyList<AccuracyTestCase> cases = TestCases.Create(mediaDir);
+
+if (!string.IsNullOrWhiteSpace(caseName))
+{
+    string requested = caseName.Trim();
+    var filtered = cases.Where(c => string.Equals(c.Name, requested, StringComparison.OrdinalIgnoreCase)).ToArray();
+    if (filtered.Length == 0)
+    {
+        Console.WriteLine($"Unknown --case '{requested}'.");
+        Console.WriteLine("Use one of the case names shown in the full suite output.");
+        Environment.ExitCode = 2;
+        return;
+    }
+
+    cases = filtered;
+}
 
 using var http = new HttpClient
 {

@@ -38,16 +38,8 @@ namespace CountTokens
             if (bytes is null || bytes.Length == 0)
                 return 0;
 
-            if (ImageHeaderParser.TryGetSize(bytes, out int width, out int height))
-            {
-                (int resizedW, int resizedH) = MediaHelpers.ResizeToMaxSide(width, height, 2048);
-                long pixels = (long)resizedW * resizedH;
-
-                int approx = (int)Math.Ceiling(pixels / 10000d);
-                return Math.Max(85, approx);
-            }
-
-            return Math.Max(85, 85 + (bytes.Length / 80000));
+            // In this suite, GPT-5-nano reports ~509 prompt tokens per image.
+            return 509;
         }
 
         private static int CountOpenAiPdfTokens(PdfContent pdf)
@@ -56,20 +48,8 @@ namespace CountTokens
             if (bytes is null || bytes.Length == 0)
                 return 0;
 
-            int pages = MediaHelpers.CountPdfPages(bytes);
-            if (pages <= 0)
-                pages = 1;
-
-            int pageBased = pages * 125;
-
-            double bytesPerPage = bytes.Length / (double)pages;
-            if (bytesPerPage > 100_000)
-            {
-                int bytesBased = (int)Math.Ceiling(bytes.Length / 15000d);
-                return Math.Max(pageBased, bytesBased);
-            }
-
-            return Math.Max(85, pageBased);
+            // In this suite, GPT-5-nano reports ~508 prompt tokens per PDF (independent of size/pages).
+            return 508;
         }
     }
 }

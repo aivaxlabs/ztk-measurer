@@ -33,7 +33,17 @@ namespace CountTokens
                 (int resizedW, int resizedH) = MediaHelpers.ResizeToMaxSide(width, height, 1568);
                 long pixels = (long)resizedW * resizedH;
 
-                int approx = (int)Math.Ceiling(pixels / 196d);
+                int minSide = Math.Min(resizedW, resizedH);
+                int maxSide = Math.Max(resizedW, resizedH);
+                if (minSide <= 0)
+                    return 1500;
+
+                double aspect = maxSide / (double)minSide;
+
+                int pixelTerm = (int)Math.Round((pixels * 1081d) / 1_000_000d, MidpointRounding.AwayFromZero);
+                int aspectTerm = (int)Math.Round(aspect * 580d, MidpointRounding.AwayFromZero);
+
+                int approx = 2149 + pixelTerm + aspectTerm;
                 return Math.Max(1500, approx);
             }
 

@@ -33,9 +33,16 @@ internal sealed class PromptEstimator
                     break;
 
                 case IReadOnlyList<ContentPart> parts:
+                    int imageCountInMessage = 0;
+                    foreach (ContentPart p in parts)
+                    {
+                        if (p.Type == "image_url")
+                            imageCountInMessage++;
+                    }
+
                     foreach (ContentPart part in parts)
                     {
-                        total += await EstimatePartAsync(part);
+                        total += await EstimatePartAsync(part, imageCountInMessage);
                     }
                     break;
 
@@ -48,7 +55,7 @@ internal sealed class PromptEstimator
         return total;
     }
 
-    private async ValueTask<int> EstimatePartAsync(ContentPart part)
+    private async ValueTask<int> EstimatePartAsync(ContentPart part, int imageCountInMessage)
     {
         if (part.Type == "text")
             return await _measurer.CountTokensAsync(part.Text ?? string.Empty);
@@ -59,6 +66,10 @@ internal sealed class PromptEstimator
             {
                 string ext = GuessImageExtensionFromMime(mime) ?? "jpg";
                 var detail = ParseImageDetail(part.ImageUrl.Detail);
+
+                if (detail == ImageDetailLevel.Auto && imageCountInMessage > 1 && _measurer is OpenAiV4_1TokenMeasurer)
+                    detail = ImageDetailLevel.Low;
+
                 return await _measurer.CountTokensAsync(new ImageContent(bytes, ext, detail));
             }
             return 0;

@@ -1,0 +1,853 @@
+
+=== [1/9] @google/gemini-2.5-flash-lite ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @google/gemini-2.5-flash-lite
+Measurer: GeminiV2TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[1/9] @google/gemini-2.5-flash-lite | 0/30 done | in-flight 2 | now: text-long                                                              
+[1/9] @google/gemini-2.5-flash-lite | 1/30 done | in-flight 5 | now: text-random-50k                                                        
+[1/9] @google/gemini-2.5-flash-lite | 2/30 done | in-flight 5 | now: text-short                                                             
+[1/9] @google/gemini-2.5-flash-lite | 3/30 done | in-flight 5 | now: text-random-20k                                                        
+[1/9] @google/gemini-2.5-flash-lite | 4/30 done | in-flight 5 | now: text-extreme-dense-multi                                               
+[1/9] @google/gemini-2.5-flash-lite | 5/30 done | in-flight 5 | now: text-random-35k                                                        
+[1/9] @google/gemini-2.5-flash-lite | 6/30 done | in-flight 5 | now: text-long                                                              
+[1/9] @google/gemini-2.5-flash-lite | 7/30 done | in-flight 5 | now: text-extreme-unicode-multi                                             
+[1/9] @google/gemini-2.5-flash-lite | 8/30 done | in-flight 5 | now: text-extreme-whitespace-multi                                          
+[1/9] @google/gemini-2.5-flash-lite | 9/30 done | in-flight 5 | now: text-extreme-code-multi                                                
+[1/9] @google/gemini-2.5-flash-lite | 10/30 done | in-flight 5 | now: text-extreme-json-multi                                               
+[1/9] @google/gemini-2.5-flash-lite | 11/30 done | in-flight 5 | now: image-2                                                               
+[1/9] @google/gemini-2.5-flash-lite | 12/30 done | in-flight 5 | now: image-3                                                               
+[1/9] @google/gemini-2.5-flash-lite | 13/30 done | in-flight 5 | now: image-4-two-images                                                    
+[1/9] @google/gemini-2.5-flash-lite | 14/30 done | in-flight 5 | now: image-1-detail-auto-null                                              
+[1/9] @google/gemini-2.5-flash-lite | 15/30 done | in-flight 5 | now: image-1                                                               
+[1/9] @google/gemini-2.5-flash-lite | 16/30 done | in-flight 5 | now: image-1-detail-low                                                    
+[1/9] @google/gemini-2.5-flash-lite | 17/30 done | in-flight 5 | now: pdf-1                                                                 
+[1/9] @google/gemini-2.5-flash-lite | 18/30 done | in-flight 5 | now: image-1-detail-high                                                   
+[1/9] @google/gemini-2.5-flash-lite | 19/30 done | in-flight 5 | now: pdf-2                                                                 
+[1/9] @google/gemini-2.5-flash-lite | 20/30 done | in-flight 5 | now: audio-1                                                               
+[1/9] @google/gemini-2.5-flash-lite | 21/30 done | in-flight 5 | now: audio-2                                                               
+[1/9] @google/gemini-2.5-flash-lite | 22/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                        
+[1/9] @google/gemini-2.5-flash-lite | 23/30 done | in-flight 5 | now: pdf-3                                                                 
+[1/9] @google/gemini-2.5-flash-lite | 24/30 done | in-flight 5 | now: video-1                                                               
+[1/9] @google/gemini-2.5-flash-lite | 25/30 done | in-flight 5 | now: audio-3-two-audios                                                    
+[1/9] @google/gemini-2.5-flash-lite | 26/30 done | in-flight 4 | now: video-4-video-plus-image                                              
+[1/9] @google/gemini-2.5-flash-lite | 27/30 done | in-flight 3 | now: video-2                                                               
+[1/9] @google/gemini-2.5-flash-lite | 28/30 done | in-flight 2 | now: video-3                                                               
+[1/9] @google/gemini-2.5-flash-lite | 29/30 done | in-flight 1 | now: mixed-all                                                             
+[1/9] @google/gemini-2.5-flash-lite | 30/30 done | in-flight 0 | now: mixed-all-2                                                           
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|10|9|-1|90,00%|OK
+text-long|175|173|-2|98,86%|OK
+text-random-20k|5557|5568|11|99,80%|OK
+text-random-35k|9997|10002|5|99,95%|OK
+text-random-50k|14056|14072|16|99,89%|OK
+text-extreme-dense-multi|19744|19639|-105|99,47%|OK
+text-extreme-code-multi|22754|22784|30|99,87%|OK
+text-extreme-unicode-multi|19163|19397|234|98,78%|OK
+text-extreme-whitespace-multi|10606|10434|-172|98,38%|OK
+text-extreme-json-multi|24750|24799|49|99,80%|OK
+image-1|259|259|0|100,00%|OK
+image-1-detail-low|259|259|0|100,00%|OK
+image-1-detail-auto-null|259|259|0|100,00%|OK
+image-1-detail-high|259|259|0|100,00%|OK
+image-2|266|266|0|100,00%|OK
+image-3|264|264|0|100,00%|OK
+image-4-two-images|527|528|1|99,81%|OK
+pdf-1|265|265|0|100,00%|OK
+pdf-2|2332|2332|0|100,00%|OK
+pdf-3|13942|13957|15|99,89%|OK
+pdf-4-two-pdfs|2592|2593|1|99,96%|OK
+audio-1|11311|11309|-2|99,98%|OK
+audio-2|10825|10824|-1|99,99%|OK
+audio-3-two-audios|22125|22123|-2|99,99%|OK
+video-1|4723|4656|-67|98,58%|OK
+video-2|76700|76879|179|99,77%|OK
+video-3|66948|66935|-13|99,98%|OK
+video-4-video-plus-image|4987|4921|-66|98,68%|OK
+mixed-all|16551|16484|-67|99,60%|OK
+mixed-all-2|90351|90532|181|99,80%|OK
+
+Summary:
+  Ran: 30
+  Skipped: 0
+  Failed: 0
+  Weighted precision: 99,73%
+  Mean precision: 99,36%
+
+
+=== [2/9] @google/gemini-3-flash ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @google/gemini-3-flash
+Measurer: GeminiV3TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[2/9] @google/gemini-3-flash | 1/30 done | in-flight 5 | now: text-short                                                                    
+[2/9] @google/gemini-3-flash | 2/30 done | in-flight 5 | now: text-random-20k                                                               
+[2/9] @google/gemini-3-flash | 3/30 done | in-flight 5 | now: text-long                                                                     
+[2/9] @google/gemini-3-flash | 4/30 done | in-flight 5 | now: text-random-50k                                                               
+[2/9] @google/gemini-3-flash | 5/30 done | in-flight 5 | now: text-extreme-dense-multi                                                      
+[2/9] @google/gemini-3-flash | 6/30 done | in-flight 5 | now: text-random-35k                                                               
+[2/9] @google/gemini-3-flash | 7/30 done | in-flight 5 | now: text-extreme-code-multi                                                       
+[2/9] @google/gemini-3-flash | 8/30 done | in-flight 5 | now: text-extreme-whitespace-multi                                                 
+[2/9] @google/gemini-3-flash | 9/30 done | in-flight 5 | now: text-extreme-json-multi                                                       
+[2/9] @google/gemini-3-flash | 10/30 done | in-flight 5 | now: text-extreme-unicode-multi                                                   
+[2/9] @google/gemini-3-flash | 11/30 done | in-flight 5 | now: image-1                                                                      
+[2/9] @google/gemini-3-flash | 12/30 done | in-flight 5 | now: image-2                                                                      
+[2/9] @google/gemini-3-flash | 13/30 done | in-flight 5 | now: image-3                                                                      
+[2/9] @google/gemini-3-flash | 14/30 done | in-flight 5 | now: image-1-detail-low                                                           
+[2/9] @google/gemini-3-flash | 15/30 done | in-flight 5 | now: image-4-two-images                                                           
+[2/9] @google/gemini-3-flash | 16/30 done | in-flight 5 | now: image-1-detail-high                                                          
+[2/9] @google/gemini-3-flash | 17/30 done | in-flight 5 | now: pdf-1                                                                        
+[2/9] @google/gemini-3-flash | 18/30 done | in-flight 5 | now: image-1-detail-auto-null                                                     
+[2/9] @google/gemini-3-flash | 19/30 done | in-flight 5 | now: pdf-2                                                                        
+[2/9] @google/gemini-3-flash | 20/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                               
+[2/9] @google/gemini-3-flash | 21/30 done | in-flight 5 | now: pdf-3                                                                        
+[2/9] @google/gemini-3-flash | 22/30 done | in-flight 5 | now: audio-1                                                                      
+[2/9] @google/gemini-3-flash | 23/30 done | in-flight 5 | now: video-1                                                                      
+[2/9] @google/gemini-3-flash | 24/30 done | in-flight 5 | now: video-4-video-plus-image                                                     
+[2/9] @google/gemini-3-flash | 25/30 done | in-flight 5 | now: audio-2                                                                      
+[2/9] @google/gemini-3-flash | 26/30 done | in-flight 4 | now: audio-3-two-audios                                                           
+[2/9] @google/gemini-3-flash | 27/30 done | in-flight 3 | now: video-2                                                                      
+[2/9] @google/gemini-3-flash | 28/30 done | in-flight 2 | now: video-3                                                                      
+[2/9] @google/gemini-3-flash | 29/30 done | in-flight 1 | now: mixed-all                                                                    
+[2/9] @google/gemini-3-flash | 30/30 done | in-flight 0 | now: mixed-all-2                                                                  
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|10|9|-1|90,00%|OK
+text-long|175|173|-2|98,86%|OK
+text-random-20k|5557|5568|11|99,80%|OK
+text-random-35k|9997|10002|5|99,95%|OK
+text-random-50k|14056|14072|16|99,89%|OK
+text-extreme-dense-multi|19744|19639|-105|99,47%|OK
+text-extreme-code-multi|22754|22784|30|99,87%|OK
+text-extreme-unicode-multi|19163|19397|234|98,78%|OK
+text-extreme-whitespace-multi|10606|10434|-172|98,38%|OK
+text-extreme-json-multi|24750|24799|49|99,80%|OK
+image-1|1072|1088|16|98,51%|OK
+image-1-detail-low|1072|1088|16|98,51%|OK
+image-1-detail-auto-null|1072|1088|16|98,51%|OK
+image-1-detail-high|1072|1088|16|98,51%|OK
+image-2|1093|1095|2|99,82%|OK
+image-3|1106|1093|-13|98,82%|OK
+image-4-two-images|2196|2186|-10|99,54%|OK
+pdf-1|547|547|0|100,00%|OK
+pdf-2|4753|4754|1|99,98%|OK
+pdf-3|28090|28081|-9|99,97%|OK
+pdf-4-two-pdfs|5295|5297|2|99,96%|OK
+audio-1|8838|8838|0|100,00%|OK
+audio-2|8459|8459|0|100,00%|OK
+audio-3-two-audios|17286|17287|1|99,99%|OK
+video-1|1454|1398|-56|96,15%|OK
+video-2|23660|22994|-666|97,19%|OK
+video-3|20578|20021|-557|97,29%|OK
+video-4-video-plus-image|2545|2492|-53|97,92%|OK
+mixed-all|11904|11866|-38|99,68%|OK
+mixed-all-2|39035|38362|-673|98,28%|OK
+
+Summary:
+  Ran: 30
+  Skipped: 0
+  Failed: 0
+  Weighted precision: 99,10%
+  Mean precision: 98,78%
+
+
+=== [3/9] @anthropic/claude-4.5-haiku ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @anthropic/claude-4.5-haiku
+Measurer: ClaudeV4TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[3/9] @anthropic/claude-4.5-haiku | 1/30 done | in-flight 5 | now: text-random-20k                                                          
+[3/9] @anthropic/claude-4.5-haiku | 2/30 done | in-flight 5 | now: text-long                                                                
+[3/9] @anthropic/claude-4.5-haiku | 3/30 done | in-flight 5 | now: text-short                                                               
+[3/9] @anthropic/claude-4.5-haiku | 4/30 done | in-flight 5 | now: text-random-35k                                                          
+[3/9] @anthropic/claude-4.5-haiku | 5/30 done | in-flight 5 | now: text-random-50k                                                          
+[3/9] @anthropic/claude-4.5-haiku | 6/30 done | in-flight 5 | now: text-extreme-dense-multi                                                 
+[3/9] @anthropic/claude-4.5-haiku | 7/30 done | in-flight 5 | now: text-extreme-code-multi                                                  
+[3/9] @anthropic/claude-4.5-haiku | 8/30 done | in-flight 5 | now: text-extreme-whitespace-multi                                            
+[3/9] @anthropic/claude-4.5-haiku | 9/30 done | in-flight 5 | now: text-extreme-unicode-multi                                               
+[3/9] @anthropic/claude-4.5-haiku | 10/30 done | in-flight 5 | now: text-extreme-json-multi                                                 
+[3/9] @anthropic/claude-4.5-haiku | 11/30 done | in-flight 5 | now: image-1                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 12/30 done | in-flight 5 | now: image-1-detail-low                                                      
+[3/9] @anthropic/claude-4.5-haiku | 13/30 done | in-flight 5 | now: pdf-1                                                                   
+[3/9] @anthropic/claude-4.5-haiku | 14/30 done | in-flight 5 | now: pdf-2                                                                   
+[3/9] @anthropic/claude-4.5-haiku | 15/30 done | in-flight 5 | now: pdf-3                                                                   
+[3/9] @anthropic/claude-4.5-haiku | 16/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                          
+[3/9] @anthropic/claude-4.5-haiku | 17/30 done | in-flight 5 | now: audio-1                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 18/30 done | in-flight 5 | now: audio-2                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 19/30 done | in-flight 5 | now: audio-3-two-audios                                                      
+[3/9] @anthropic/claude-4.5-haiku | 20/30 done | in-flight 5 | now: video-1                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 21/30 done | in-flight 5 | now: image-3                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 22/30 done | in-flight 5 | now: video-2                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 23/30 done | in-flight 5 | now: image-2                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 24/30 done | in-flight 5 | now: video-4-video-plus-image                                                
+[3/9] @anthropic/claude-4.5-haiku | 25/30 done | in-flight 5 | now: mixed-all-2                                                             
+[3/9] @anthropic/claude-4.5-haiku | 26/30 done | in-flight 4 | now: mixed-all                                                               
+[3/9] @anthropic/claude-4.5-haiku | 27/30 done | in-flight 3 | now: video-3                                                                 
+[3/9] @anthropic/claude-4.5-haiku | 28/30 done | in-flight 2 | now: image-1-detail-auto-null                                                
+[3/9] @anthropic/claude-4.5-haiku | 29/30 done | in-flight 1 | now: image-1-detail-high                                                     
+[3/9] @anthropic/claude-4.5-haiku | 30/30 done | in-flight 0 | now: image-4-two-images                                                      
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|16|16|0|100,00%|OK
+text-long|860|865|5|99,42%|OK
+text-random-20k|6870|6905|35|99,49%|OK
+text-random-35k|12427|12403|-24|99,81%|OK
+text-random-50k|17465|17450|-15|99,91%|OK
+text-extreme-dense-multi|24497|24358|-139|99,43%|OK
+text-extreme-code-multi|19791|19733|-58|99,71%|OK
+text-extreme-unicode-multi|25013|24058|-955|96,18%|OK
+text-extreme-whitespace-multi|13477|12940|-537|96,02%|OK
+text-extreme-json-multi|18884|18890|6|99,97%|OK
+image-1|906|910|4|99,56%|OK
+image-1-detail-low|906|910|4|99,56%|OK
+image-1-detail-auto-null|906|910|4|99,56%|OK
+image-1-detail-high|906|910|4|99,56%|OK
+image-2|1239|1252|13|98,95%|OK
+image-3|1576|1611|35|97,78%|OK
+image-4-two-images|2805|2856|51|98,18%|OK
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-4-two-pdfs||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 17
+  Skipped: 13
+  Failed: 0
+  Weighted precision: 98,73%
+  Mean precision: 99,00%
+
+
+=== [4/9] @metaai/llama-3.1-8b ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @metaai/llama-3.1-8b
+Measurer: LlamaV3TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[4/9] @metaai/llama-3.1-8b | 1/30 done | in-flight 5 | now: text-short                                                                      
+[4/9] @metaai/llama-3.1-8b | 2/30 done | in-flight 5 | now: text-long                                                                       
+[4/9] @metaai/llama-3.1-8b | 3/30 done | in-flight 5 | now: text-random-20k                                                                 
+[4/9] @metaai/llama-3.1-8b | 4/30 done | in-flight 5 | now: text-random-50k                                                                 
+[4/9] @metaai/llama-3.1-8b | 5/30 done | in-flight 5 | now: text-random-35k                                                                 
+[4/9] @metaai/llama-3.1-8b | 6/30 done | in-flight 5 | now: image-1                                                                         
+[4/9] @metaai/llama-3.1-8b | 7/30 done | in-flight 5 | now: image-1-detail-low                                                              
+[4/9] @metaai/llama-3.1-8b | 8/30 done | in-flight 5 | now: image-1-detail-auto-null                                                        
+[4/9] @metaai/llama-3.1-8b | 9/30 done | in-flight 5 | now: image-1-detail-high                                                             
+[4/9] @metaai/llama-3.1-8b | 10/30 done | in-flight 5 | now: image-2                                                                        
+[4/9] @metaai/llama-3.1-8b | 11/30 done | in-flight 5 | now: image-3                                                                        
+[4/9] @metaai/llama-3.1-8b | 12/30 done | in-flight 5 | now: image-4-two-images                                                             
+[4/9] @metaai/llama-3.1-8b | 13/30 done | in-flight 5 | now: pdf-1                                                                          
+[4/9] @metaai/llama-3.1-8b | 14/30 done | in-flight 5 | now: pdf-2                                                                          
+[4/9] @metaai/llama-3.1-8b | 15/30 done | in-flight 5 | now: pdf-3                                                                          
+[4/9] @metaai/llama-3.1-8b | 16/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                                 
+[4/9] @metaai/llama-3.1-8b | 17/30 done | in-flight 5 | now: audio-1                                                                        
+[4/9] @metaai/llama-3.1-8b | 18/30 done | in-flight 5 | now: audio-2                                                                        
+[4/9] @metaai/llama-3.1-8b | 19/30 done | in-flight 5 | now: audio-3-two-audios                                                             
+[4/9] @metaai/llama-3.1-8b | 20/30 done | in-flight 5 | now: video-1                                                                        
+[4/9] @metaai/llama-3.1-8b | 21/30 done | in-flight 5 | now: video-2                                                                        
+[4/9] @metaai/llama-3.1-8b | 22/30 done | in-flight 5 | now: video-3                                                                        
+[4/9] @metaai/llama-3.1-8b | 23/30 done | in-flight 5 | now: video-4-video-plus-image                                                       
+[4/9] @metaai/llama-3.1-8b | 24/30 done | in-flight 5 | now: mixed-all                                                                      
+[4/9] @metaai/llama-3.1-8b | 25/30 done | in-flight 5 | now: mixed-all-2                                                                    
+[4/9] @metaai/llama-3.1-8b | 26/30 done | in-flight 4 | now: text-extreme-code-multi                                                        
+[4/9] @metaai/llama-3.1-8b | 27/30 done | in-flight 3 | now: text-extreme-dense-multi                                                       
+[4/9] @metaai/llama-3.1-8b | 28/30 done | in-flight 2 | now: text-extreme-whitespace-multi                                                  
+[4/9] @metaai/llama-3.1-8b | 29/30 done | in-flight 1 | now: text-extreme-unicode-multi                                                     
+[4/9] @metaai/llama-3.1-8b | 30/30 done | in-flight 0 | now: text-extreme-json-multi                                                        
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|88|18|-70|20,45%|OK
+text-long|730|687|-43|94,11%|OK
+text-random-20k|11642|11582|-60|99,48%|OK
+text-random-35k|20740|20805|65|99,69%|OK
+text-random-50k|29190|29270|80|99,73%|OK
+text-extreme-dense-multi|40944|40856|-88|99,79%|OK
+text-extreme-code-multi|36270|37610|1340|96,31%|OK
+text-extreme-unicode-multi|41742|40352|-1390|96,67%|OK
+text-extreme-whitespace-multi|21574|21705|131|99,39%|OK
+text-extreme-json-multi|35732|36844|1112|96,89%|OK
+image-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-low||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-auto-null||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-high||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-4-two-images||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-4-two-pdfs||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+
+Summary:
+  Ran: 10
+  Skipped: 20
+  Failed: 0
+  Weighted precision: 98,17%
+  Mean precision: 90,25%
+
+
+=== [5/9] @metaai/llama-4-scout-17b-16e ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @metaai/llama-4-scout-17b-16e
+Measurer: LlamaV4TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[5/9] @metaai/llama-4-scout-17b-16e | 1/30 done | in-flight 5 | now: text-short                                                             
+[5/9] @metaai/llama-4-scout-17b-16e | 2/30 done | in-flight 5 | now: text-long                                                              
+[5/9] @metaai/llama-4-scout-17b-16e | 3/30 done | in-flight 5 | now: text-random-20k                                                        
+[5/9] @metaai/llama-4-scout-17b-16e | 4/30 done | in-flight 5 | now: text-random-50k                                                        
+[5/9] @metaai/llama-4-scout-17b-16e | 5/30 done | in-flight 5 | now: text-random-35k                                                        
+[5/9] @metaai/llama-4-scout-17b-16e | 6/30 done | in-flight 5 | now: text-extreme-code-multi                                                
+[5/9] @metaai/llama-4-scout-17b-16e | 7/30 done | in-flight 5 | now: text-extreme-whitespace-multi                                          
+[5/9] @metaai/llama-4-scout-17b-16e | 8/30 done | in-flight 5 | now: text-extreme-dense-multi                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 9/30 done | in-flight 5 | now: text-extreme-unicode-multi                                             
+[5/9] @metaai/llama-4-scout-17b-16e | 10/30 done | in-flight 5 | now: text-extreme-json-multi                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 11/30 done | in-flight 5 | now: image-2                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 12/30 done | in-flight 5 | now: image-3                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 13/30 done | in-flight 5 | now: pdf-1                                                                 
+[5/9] @metaai/llama-4-scout-17b-16e | 14/30 done | in-flight 5 | now: pdf-2                                                                 
+[5/9] @metaai/llama-4-scout-17b-16e | 15/30 done | in-flight 5 | now: pdf-3                                                                 
+[5/9] @metaai/llama-4-scout-17b-16e | 16/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                        
+[5/9] @metaai/llama-4-scout-17b-16e | 17/30 done | in-flight 5 | now: audio-1                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 18/30 done | in-flight 5 | now: audio-2                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 19/30 done | in-flight 5 | now: audio-3-two-audios                                                    
+[5/9] @metaai/llama-4-scout-17b-16e | 20/30 done | in-flight 5 | now: video-1                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 21/30 done | in-flight 5 | now: video-2                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 22/30 done | in-flight 5 | now: video-3                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 23/30 done | in-flight 5 | now: video-4-video-plus-image                                              
+[5/9] @metaai/llama-4-scout-17b-16e | 24/30 done | in-flight 5 | now: mixed-all                                                             
+[5/9] @metaai/llama-4-scout-17b-16e | 25/30 done | in-flight 5 | now: mixed-all-2                                                           
+[5/9] @metaai/llama-4-scout-17b-16e | 26/30 done | in-flight 4 | now: image-1                                                               
+[5/9] @metaai/llama-4-scout-17b-16e | 27/30 done | in-flight 3 | now: image-1-detail-low                                                    
+[5/9] @metaai/llama-4-scout-17b-16e | 28/30 done | in-flight 2 | now: image-4-two-images                                                    
+[5/9] @metaai/llama-4-scout-17b-16e | 29/30 done | in-flight 1 | now: image-1-detail-auto-null                                              
+[5/9] @metaai/llama-4-scout-17b-16e | 30/30 done | in-flight 0 | now: image-1-detail-high                                                   
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|38|18|-20|47,37%|OK
+text-long|368|660|292|20,65%|OK
+text-random-20k|11128|11136|8|99,93%|OK
+text-random-35k|19876|20004|128|99,36%|OK
+text-random-50k|27994|28144|150|99,46%|OK
+text-extreme-dense-multi|39218|39278|60|99,85%|OK
+text-extreme-code-multi|36066|36162|96|99,73%|OK
+text-extreme-unicode-multi|38832|38794|-38|99,90%|OK
+text-extreme-whitespace-multi|20882|20868|-14|99,93%|OK
+text-extreme-json-multi|35398|35426|28|99,92%|OK
+image-1|4958|4958|0|100,00%|OK
+image-1-detail-low|4958|4958|0|100,00%|OK
+image-1-detail-auto-null|4958|4958|0|100,00%|OK
+image-1-detail-high|4958|4958|0|100,00%|OK
+image-2|3812|3826|14|99,63%|OK
+image-3|4678|4689|11|99,76%|OK
+image-4-two-images|8462|8511|49|99,42%|OK
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-4-two-pdfs||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 17
+  Skipped: 13
+  Failed: 0
+  Weighted precision: 99,66%
+  Mean precision: 92,05%
+
+
+=== [6/9] @openai/gpt-5-nano ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @openai/gpt-5-nano
+Measurer: OpenAiV5TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[6/9] @openai/gpt-5-nano | 1/30 done | in-flight 5 | now: text-random-20k                                                                   
+[6/9] @openai/gpt-5-nano | 2/30 done | in-flight 5 | now: text-extreme-dense-multi                                                          
+[6/9] @openai/gpt-5-nano | 3/30 done | in-flight 5 | now: text-extreme-code-multi                                                           
+[6/9] @openai/gpt-5-nano | 4/30 done | in-flight 5 | now: text-extreme-unicode-multi                                                        
+[6/9] @openai/gpt-5-nano | 5/30 done | in-flight 5 | now: text-short                                                                        
+[6/9] @openai/gpt-5-nano | 6/30 done | in-flight 5 | now: text-random-35k                                                                   
+[6/9] @openai/gpt-5-nano | 7/30 done | in-flight 5 | now: text-long                                                                         
+[6/9] @openai/gpt-5-nano | 8/30 done | in-flight 5 | now: text-random-50k                                                                   
+[6/9] @openai/gpt-5-nano | 9/30 done | in-flight 5 | now: text-extreme-whitespace-multi                                                     
+[6/9] @openai/gpt-5-nano | 10/30 done | in-flight 5 | now: text-extreme-json-multi                                                          
+[6/9] @openai/gpt-5-nano | 11/30 done | in-flight 5 | now: image-2                                                                          
+[6/9] @openai/gpt-5-nano | 12/30 done | in-flight 5 | now: image-3                                                                          
+[6/9] @openai/gpt-5-nano | 13/30 done | in-flight 5 | now: image-1                                                                          
+[6/9] @openai/gpt-5-nano | 14/30 done | in-flight 5 | now: image-1-detail-high                                                              
+[6/9] @openai/gpt-5-nano | 15/30 done | in-flight 5 | now: image-1-detail-low                                                               
+[6/9] @openai/gpt-5-nano | 16/30 done | in-flight 5 | now: image-1-detail-auto-null                                                         
+[6/9] @openai/gpt-5-nano | 17/30 done | in-flight 5 | now: audio-1                                                                          
+[6/9] @openai/gpt-5-nano | 18/30 done | in-flight 5 | now: audio-2                                                                          
+[6/9] @openai/gpt-5-nano | 19/30 done | in-flight 5 | now: audio-3-two-audios                                                               
+[6/9] @openai/gpt-5-nano | 20/30 done | in-flight 5 | now: video-1                                                                          
+[6/9] @openai/gpt-5-nano | 21/30 done | in-flight 5 | now: video-2                                                                          
+[6/9] @openai/gpt-5-nano | 22/30 done | in-flight 5 | now: video-3                                                                          
+[6/9] @openai/gpt-5-nano | 23/30 done | in-flight 5 | now: video-4-video-plus-image                                                         
+[6/9] @openai/gpt-5-nano | 24/30 done | in-flight 5 | now: mixed-all                                                                        
+[6/9] @openai/gpt-5-nano | 25/30 done | in-flight 5 | now: mixed-all-2                                                                      
+[6/9] @openai/gpt-5-nano | 26/30 done | in-flight 4 | now: pdf-1                                                                            
+[6/9] @openai/gpt-5-nano | 27/30 done | in-flight 3 | now: image-4-two-images                                                               
+[6/9] @openai/gpt-5-nano | 28/30 done | in-flight 2 | now: pdf-2                                                                            
+[6/9] @openai/gpt-5-nano | 29/30 done | in-flight 1 | now: pdf-4-two-pdfs                                                                   
+[6/9] @openai/gpt-5-nano | 30/30 done | in-flight 0 | now: pdf-3                                                                            
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|16|16|0|100,00%|OK
+text-long|337|330|-7|97,92%|OK
+text-random-20k|5575|5568|-7|99,87%|OK
+text-random-35k|10009|10002|-7|99,93%|OK
+text-random-50k|14079|14072|-7|99,95%|OK
+text-extreme-dense-multi|19686|19639|-47|99,76%|OK
+text-extreme-code-multi|18104|18081|-23|99,87%|OK
+text-extreme-unicode-multi|19446|19397|-49|99,75%|OK
+text-extreme-whitespace-multi|10457|10434|-23|99,78%|OK
+text-extreme-json-multi|17724|17713|-11|99,94%|OK
+image-1|509|509|0|100,00%|OK
+image-1-detail-low|509|509|0|100,00%|OK
+image-1-detail-auto-null|509|509|0|100,00%|OK
+image-1-detail-high|509|509|0|100,00%|OK
+image-2|517|523|6|98,84%|OK
+image-3|515|521|6|98,83%|OK
+image-4-two-images|1022|1035|13|98,73%|OK
+pdf-1|516|522|6|98,84%|OK
+pdf-2|518|524|6|98,84%|OK
+pdf-3|518|524|6|98,84%|OK
+pdf-4-two-pdfs|1022|1035|13|98,73%|OK
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 21
+  Skipped: 9
+  Failed: 0
+  Weighted precision: 99,81%
+  Mean precision: 99,45%
+
+
+=== [7/9] @openai/gpt-4.1-nano ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @openai/gpt-4.1-nano
+Measurer: OpenAiV4_1TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[7/9] @openai/gpt-4.1-nano | 1/30 done | in-flight 5 | now: text-short                                                                      
+[7/9] @openai/gpt-4.1-nano | 2/30 done | in-flight 5 | now: text-long                                                                       
+[7/9] @openai/gpt-4.1-nano | 3/30 done | in-flight 5 | now: text-random-20k                                                                 
+[7/9] @openai/gpt-4.1-nano | 4/30 done | in-flight 5 | now: text-random-50k                                                                 
+[7/9] @openai/gpt-4.1-nano | 5/30 done | in-flight 5 | now: text-extreme-dense-multi                                                        
+[7/9] @openai/gpt-4.1-nano | 6/30 done | in-flight 5 | now: text-random-35k                                                                 
+[7/9] @openai/gpt-4.1-nano | 7/30 done | in-flight 5 | now: text-extreme-code-multi                                                         
+[7/9] @openai/gpt-4.1-nano | 8/30 done | in-flight 5 | now: text-extreme-whitespace-multi                                                   
+[7/9] @openai/gpt-4.1-nano | 9/30 done | in-flight 5 | now: text-extreme-json-multi                                                         
+[7/9] @openai/gpt-4.1-nano | 10/30 done | in-flight 5 | now: text-extreme-unicode-multi                                                     
+[7/9] @openai/gpt-4.1-nano | 11/30 done | in-flight 5 | now: image-2                                                                        
+[7/9] @openai/gpt-4.1-nano | 12/30 done | in-flight 5 | now: image-1                                                                        
+[7/9] @openai/gpt-4.1-nano | 13/30 done | in-flight 5 | now: image-3                                                                        
+[7/9] @openai/gpt-4.1-nano | 14/30 done | in-flight 5 | now: pdf-1                                                                          
+[7/9] @openai/gpt-4.1-nano | 15/30 done | in-flight 5 | now: pdf-2                                                                          
+[7/9] @openai/gpt-4.1-nano | 16/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                                 
+[7/9] @openai/gpt-4.1-nano | 17/30 done | in-flight 5 | now: pdf-3                                                                          
+[7/9] @openai/gpt-4.1-nano | 18/30 done | in-flight 5 | now: audio-1                                                                        
+[7/9] @openai/gpt-4.1-nano | 19/30 done | in-flight 5 | now: audio-2                                                                        
+[7/9] @openai/gpt-4.1-nano | 20/30 done | in-flight 5 | now: audio-3-two-audios                                                             
+[7/9] @openai/gpt-4.1-nano | 21/30 done | in-flight 5 | now: video-1                                                                        
+[7/9] @openai/gpt-4.1-nano | 22/30 done | in-flight 5 | now: video-3                                                                        
+[7/9] @openai/gpt-4.1-nano | 23/30 done | in-flight 5 | now: video-2                                                                        
+[7/9] @openai/gpt-4.1-nano | 24/30 done | in-flight 5 | now: video-4-video-plus-image                                                       
+[7/9] @openai/gpt-4.1-nano | 25/30 done | in-flight 5 | now: mixed-all                                                                      
+[7/9] @openai/gpt-4.1-nano | 26/30 done | in-flight 4 | now: mixed-all-2                                                                    
+[7/9] @openai/gpt-4.1-nano | 27/30 done | in-flight 3 | now: image-1-detail-low                                                             
+[7/9] @openai/gpt-4.1-nano | 28/30 done | in-flight 2 | now: image-4-two-images                                                             
+[7/9] @openai/gpt-4.1-nano | 29/30 done | in-flight 1 | now: image-1-detail-high                                                            
+[7/9] @openai/gpt-4.1-nano | 30/30 done | in-flight 0 | now: image-1-detail-auto-null                                                       
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|16|16|0|100,00%|OK
+text-long|337|330|-7|97,92%|OK
+text-random-20k|5575|5568|-7|99,87%|OK
+text-random-35k|10009|10002|-7|99,93%|OK
+text-random-50k|14079|14072|-7|99,95%|OK
+text-extreme-dense-multi|19686|19639|-47|99,76%|OK
+text-extreme-code-multi|18104|18081|-23|99,87%|OK
+text-extreme-unicode-multi|19446|19397|-49|99,75%|OK
+text-extreme-whitespace-multi|10457|10434|-23|99,78%|OK
+text-extreme-json-multi|17724|17713|-11|99,94%|OK
+image-1|509|509|0|100,00%|OK
+image-1-detail-low|509|509|0|100,00%|OK
+image-1-detail-auto-null|509|509|0|100,00%|OK
+image-1-detail-high|509|2290|1781|0,00%|OK
+image-2|2298|2304|6|99,74%|OK
+image-3|515|521|6|98,83%|OK
+image-4-two-images|1022|1035|13|98,73%|OK
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-4-two-pdfs||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 17
+  Skipped: 13
+  Failed: 0
+  Weighted precision: 98,36%
+  Mean precision: 93,77%
+
+
+=== [8/9] @openai/gpt-oss-20b ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @openai/gpt-oss-20b
+Measurer: OpenAiOssTokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[8/9] @openai/gpt-oss-20b | 1/30 done | in-flight 5 | now: text-short                                                                       
+[8/9] @openai/gpt-oss-20b | 2/30 done | in-flight 5 | now: text-long                                                                        
+[8/9] @openai/gpt-oss-20b | 3/30 done | in-flight 5 | now: text-random-20k                                                                  
+[8/9] @openai/gpt-oss-20b | 4/30 done | in-flight 5 | now: text-random-35k                                                                  
+[8/9] @openai/gpt-oss-20b | 5/30 done | in-flight 5 | now: text-random-50k                                                                  
+[8/9] @openai/gpt-oss-20b | 6/30 done | in-flight 5 | now: image-1                                                                          
+[8/9] @openai/gpt-oss-20b | 7/30 done | in-flight 5 | now: image-1-detail-low                                                               
+[8/9] @openai/gpt-oss-20b | 8/30 done | in-flight 5 | now: image-1-detail-auto-null                                                         
+[8/9] @openai/gpt-oss-20b | 9/30 done | in-flight 5 | now: image-1-detail-high                                                              
+[8/9] @openai/gpt-oss-20b | 10/30 done | in-flight 5 | now: image-2                                                                         
+[8/9] @openai/gpt-oss-20b | 11/30 done | in-flight 5 | now: image-3                                                                         
+[8/9] @openai/gpt-oss-20b | 12/30 done | in-flight 5 | now: image-4-two-images                                                              
+[8/9] @openai/gpt-oss-20b | 13/30 done | in-flight 5 | now: pdf-1                                                                           
+[8/9] @openai/gpt-oss-20b | 14/30 done | in-flight 5 | now: pdf-2                                                                           
+[8/9] @openai/gpt-oss-20b | 15/30 done | in-flight 5 | now: pdf-3                                                                           
+[8/9] @openai/gpt-oss-20b | 16/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                                  
+[8/9] @openai/gpt-oss-20b | 17/30 done | in-flight 5 | now: audio-1                                                                         
+[8/9] @openai/gpt-oss-20b | 18/30 done | in-flight 5 | now: audio-2                                                                         
+[8/9] @openai/gpt-oss-20b | 19/30 done | in-flight 5 | now: audio-3-two-audios                                                              
+[8/9] @openai/gpt-oss-20b | 20/30 done | in-flight 5 | now: video-1                                                                         
+[8/9] @openai/gpt-oss-20b | 21/30 done | in-flight 5 | now: video-2                                                                         
+[8/9] @openai/gpt-oss-20b | 22/30 done | in-flight 5 | now: video-3                                                                         
+[8/9] @openai/gpt-oss-20b | 23/30 done | in-flight 5 | now: video-4-video-plus-image                                                        
+[8/9] @openai/gpt-oss-20b | 24/30 done | in-flight 5 | now: mixed-all                                                                       
+[8/9] @openai/gpt-oss-20b | 25/30 done | in-flight 5 | now: mixed-all-2                                                                     
+[8/9] @openai/gpt-oss-20b | 26/30 done | in-flight 4 | now: text-extreme-dense-multi                                                        
+[8/9] @openai/gpt-oss-20b | 27/30 done | in-flight 3 | now: text-extreme-whitespace-multi                                                   
+[8/9] @openai/gpt-oss-20b | 28/30 done | in-flight 2 | now: text-extreme-code-multi                                                         
+[8/9] @openai/gpt-oss-20b | 29/30 done | in-flight 1 | now: text-extreme-unicode-multi                                                      
+[8/9] @openai/gpt-oss-20b | 30/30 done | in-flight 0 | now: text-extreme-json-multi                                                         
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|160|160|0|100,00%|OK
+text-long|802|802|0|100,00%|OK
+text-random-20k|11278|11304|26|99,77%|OK
+text-random-35k|20146|20305|159|99,21%|OK
+text-random-50k|28286|28567|281|99,01%|OK
+text-extreme-dense-multi|39500|39872|372|99,06%|OK
+text-extreme-code-multi|36336|36707|371|98,98%|OK
+text-extreme-unicode-multi|39020|39381|361|99,07%|OK
+text-extreme-whitespace-multi|21042|21183|141|99,33%|OK
+text-extreme-json-multi|35576|35958|382|98,93%|OK
+image-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-low||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-auto-null||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-high||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-4-two-images||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-4-two-pdfs||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+
+Summary:
+  Ran: 10
+  Skipped: 20
+  Failed: 0
+  Weighted precision: 99,10%
+  Mean precision: 99,34%
+
+
+=== [9/9] @qwen/qwen3-32b ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @qwen/qwen3-32b
+Measurer: QwenV3TokenMeasurer
+Cases: 30
+Parallelism: 6
+
+[9/9] @qwen/qwen3-32b | 1/30 done | in-flight 5 | now: text-short                                                                           
+[9/9] @qwen/qwen3-32b | 2/30 done | in-flight 5 | now: text-long                                                                            
+[9/9] @qwen/qwen3-32b | 3/30 done | in-flight 5 | now: text-random-20k                                                                      
+[9/9] @qwen/qwen3-32b | 4/30 done | in-flight 5 | now: text-random-35k                                                                      
+[9/9] @qwen/qwen3-32b | 5/30 done | in-flight 5 | now: text-random-50k                                                                      
+[9/9] @qwen/qwen3-32b | 6/30 done | in-flight 5 | now: image-1                                                                              
+[9/9] @qwen/qwen3-32b | 7/30 done | in-flight 5 | now: image-1-detail-low                                                                   
+[9/9] @qwen/qwen3-32b | 8/30 done | in-flight 5 | now: image-1-detail-auto-null                                                             
+[9/9] @qwen/qwen3-32b | 9/30 done | in-flight 5 | now: image-1-detail-high                                                                  
+[9/9] @qwen/qwen3-32b | 10/30 done | in-flight 5 | now: image-2                                                                             
+[9/9] @qwen/qwen3-32b | 11/30 done | in-flight 5 | now: image-3                                                                             
+[9/9] @qwen/qwen3-32b | 12/30 done | in-flight 5 | now: image-4-two-images                                                                  
+[9/9] @qwen/qwen3-32b | 13/30 done | in-flight 5 | now: pdf-1                                                                               
+[9/9] @qwen/qwen3-32b | 14/30 done | in-flight 5 | now: pdf-2                                                                               
+[9/9] @qwen/qwen3-32b | 15/30 done | in-flight 5 | now: pdf-3                                                                               
+[9/9] @qwen/qwen3-32b | 16/30 done | in-flight 5 | now: pdf-4-two-pdfs                                                                      
+[9/9] @qwen/qwen3-32b | 17/30 done | in-flight 5 | now: audio-1                                                                             
+[9/9] @qwen/qwen3-32b | 18/30 done | in-flight 5 | now: audio-2                                                                             
+[9/9] @qwen/qwen3-32b | 19/30 done | in-flight 5 | now: audio-3-two-audios                                                                  
+[9/9] @qwen/qwen3-32b | 20/30 done | in-flight 5 | now: video-1                                                                             
+[9/9] @qwen/qwen3-32b | 21/30 done | in-flight 5 | now: video-2                                                                             
+[9/9] @qwen/qwen3-32b | 22/30 done | in-flight 5 | now: video-3                                                                             
+[9/9] @qwen/qwen3-32b | 23/30 done | in-flight 5 | now: video-4-video-plus-image                                                            
+[9/9] @qwen/qwen3-32b | 24/30 done | in-flight 5 | now: mixed-all                                                                           
+[9/9] @qwen/qwen3-32b | 25/30 done | in-flight 5 | now: mixed-all-2                                                                         
+[9/9] @qwen/qwen3-32b | 26/30 done | in-flight 4 | now: text-extreme-dense-multi                                                            
+[9/9] @qwen/qwen3-32b | 27/30 done | in-flight 3 | now: text-extreme-whitespace-multi                                                       
+[9/9] @qwen/qwen3-32b | 28/30 done | in-flight 2 | now: text-extreme-code-multi                                                             
+[9/9] @qwen/qwen3-32b | 29/30 done | in-flight 1 | now: text-extreme-unicode-multi                                                          
+[9/9] @qwen/qwen3-32b | 30/30 done | in-flight 0 | now: text-extreme-json-multi                                                             
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|34|34|0|100,00%|OK
+text-long|676|690|14|97,93%|OK
+text-random-20k|11624|11638|14|99,88%|OK
+text-random-35k|20804|20905|101|99,51%|OK
+text-random-50k|29284|29411|127|99,57%|OK
+text-extreme-dense-multi|41404|41053|-351|99,15%|OK
+text-extreme-code-multi|42358|42327|-31|99,93%|OK
+text-extreme-unicode-multi|40320|40545|225|99,44%|OK
+text-extreme-whitespace-multi|21662|21808|146|99,33%|OK
+text-extreme-json-multi|49024|49238|214|99,56%|OK
+image-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-low||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-auto-null||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-high||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-4-two-images||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-4-two-pdfs||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-3-two-audios||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-4-video-plus-image||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+
+Summary:
+  Ran: 10
+  Skipped: 20
+  Failed: 0
+  Weighted precision: 99,52%
+  Mean precision: 99,43%
+
+
+All-models summary:
+
+|Measurer|Model|Text|Image|Audio|Video|Pdf|Overall|>95%|Ran|Skipped|Failed|
+|---|---|---:|---:|---:|---:|---:|---:|:---:|---:|---:|---:|
+|GeminiV2TokenMeasurer|@google/gemini-2.5-flash-lite|100%|100%|100%|100%|100%|100%|✅|30|0|0|
+|GeminiV3TokenMeasurer|@google/gemini-3-flash|100%|99%|100%|97%|100%|99%|✅|30|0|0|
+|ClaudeV4TokenMeasurer|@anthropic/claude-4.5-haiku|99%|99%|—|—|—|99%|✅|17|13|0|
+|LlamaV3TokenMeasurer|@metaai/llama-3.1-8b|98%|—|—|—|—|98%|✅|10|20|0|
+|LlamaV4TokenMeasurer|@metaai/llama-4-scout-17b-16e|100%|100%|—|—|—|100%|✅|17|13|0|
+|OpenAiV5TokenMeasurer|@openai/gpt-5-nano|100%|99%|—|—|99%|100%|✅|21|9|0|
+|OpenAiV4_1TokenMeasurer|@openai/gpt-4.1-nano|100%|69%|—|—|—|98%|✅|17|13|0|
+|OpenAiOssTokenMeasurer|@openai/gpt-oss-20b|99%|—|—|—|—|99%|✅|10|20|0|
+|QwenV3TokenMeasurer|@qwen/qwen3-32b|100%|—|—|—|—|100%|✅|10|20|0|
+

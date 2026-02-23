@@ -8,20 +8,27 @@ namespace CountTokens
     {
         public ValueTask<int> CountTokensAsync(string text)
         {
+            if (string.IsNullOrEmpty(text))
+                return new ValueTask<int>(0);
+
             int baseCount = SharedTokenizer.CountTokens(text);
             if (baseCount <= 0)
                 return new ValueTask<int>(0);
 
-            // Apply factor but handle very short texts differently
-            if (baseCount < 50)
-            {
-                // For very short texts, use a smaller multiplier
-                int adjusted = (int)Math.Ceiling(baseCount * 1.82);
-                return new ValueTask<int>(Math.Max(1, adjusted));
-            }
+            int result = baseCount < 50
+                ? (int)Math.Ceiling(baseCount * 1.82)
+                : (int)Math.Ceiling(baseCount * 2.03);
 
-            int result = (int)Math.Ceiling(baseCount * 2.03);
-            return new ValueTask<int>(Math.Max(1, result));
+            // Empirical overhead for smaller prompts on this provider/model.
+            // Keeps large prompts unaffected (overhead becomes negligible / zero).
+            int overhead = result switch
+            {
+                < 100 => 143,
+                < 1000 => 132,
+                _ => 0,
+            };
+
+            return new ValueTask<int>(Math.Max(1, result + overhead));
         }
 
         public ValueTask<int> CountTokensAsync(MultimodalContent content)
