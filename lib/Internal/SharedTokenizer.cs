@@ -34,6 +34,15 @@ namespace CountTokens.Internal
             return Math.Max(1, adjusted);
         }
 
+        public static int CountTokensWithOverhead(string? text, int overhead)
+        {
+            int baseCount = CountTokens(text);
+            if (baseCount <= 0)
+                return 0;
+
+            return Math.Max(1, baseCount + overhead);
+        }
+
         private static bool TryEstimateHighlyRepetitiveText(string text, out int tokens)
         {
             tokens = 0;

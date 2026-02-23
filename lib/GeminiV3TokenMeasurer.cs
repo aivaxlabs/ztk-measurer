@@ -10,6 +10,6 @@ namespace CountTokens
             => new(SharedTokenizer.CountTokens(text));
 
         public ValueTask<int> CountTokensAsync(MultimodalContent content)
-            => new(GeminiMultimodalTokenCounter.CountTokens(content));
+            => new(GeminiV3MultimodalTokenCounter.CountTokens(content));
     }
 }

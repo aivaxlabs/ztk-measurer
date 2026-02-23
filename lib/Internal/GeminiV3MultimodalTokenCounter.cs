@@ -2,7 +2,7 @@ using CountTokens.Content;
 
 namespace CountTokens.Internal
 {
-    internal static class GeminiMultimodalTokenCounter
+    internal static class GeminiV3MultimodalTokenCounter
     {
         public static int CountTokens(MultimodalContent content)
         {
@@ -26,31 +26,14 @@ namespace CountTokens.Internal
 
             if (ImageHeaderParser.TryGetSize(bytes, out int width, out int height))
             {
-                int maxDim = Math.Max(width, height);
-                ImageDetailLevel autoDetail = (maxDim > 2048) ? ImageDetailLevel.High : ImageDetailLevel.Low;
-
-                ImageDetailLevel requested = image.Detail;
-                ImageDetailLevel detail = requested switch
-                {
-                    ImageDetailLevel.Auto => autoDetail,
-                    ImageDetailLevel.High => ImageDetailLevel.High,
-                    ImageDetailLevel.Low => autoDetail == ImageDetailLevel.High ? ImageDetailLevel.High : ImageDetailLevel.Low,
-                    _ => autoDetail,
-                };
-
                 (int resizedW, int resizedH) = MediaHelpers.ResizeToMaxSide(width, height, 1568);
                 long pixels = (long)resizedW * resizedH;
 
-                double divisor = detail == ImageDetailLevel.High ? 10500d : 9500d;
-                int approx = (int)Math.Ceiling(pixels / divisor);
-                if (approx < 85)
-                    approx = 85;
-
-                return approx;
+                int approx = (int)Math.Ceiling(pixels / 720d);
+                return Math.Max(500, approx);
             }
 
-            int fallback = 85 + (bytes.Length / 5000);
-            return Math.Max(85, fallback);
+            return Math.Max(500, 500 + (bytes.Length / 5000));
         }
 
         public static int CountAudioTokens(AudioContent audio)
@@ -63,7 +46,7 @@ namespace CountTokens.Internal
             if (seconds <= 0)
                 return 10;
 
-            int tokens = (int)Math.Ceiling(seconds * 32d);
+            int tokens = (int)Math.Ceiling(seconds * 25d);
             return Math.Clamp(tokens, 10, int.MaxValue);
         }
 
@@ -81,7 +64,7 @@ namespace CountTokens.Internal
             {
                 if (Mp4DurationReader.TryGetDurationSeconds(bytes, out double mp4Seconds) && mp4Seconds > 0)
                 {
-                    int durationTokens = (int)Math.Ceiling(mp4Seconds * 271d);
+                    int durationTokens = (int)Math.Ceiling(mp4Seconds * 88.5d);
                     return Math.Clamp(durationTokens, 100, int.MaxValue);
                 }
             }
@@ -101,7 +84,7 @@ namespace CountTokens.Internal
             if (seconds <= 0)
                 return 100;
 
-            int tokens = (int)Math.Ceiling(seconds * 271d);
+            int tokens = (int)Math.Ceiling(seconds * 88.5d);
             return Math.Clamp(tokens, 100, int.MaxValue);
         }
 
@@ -115,12 +98,12 @@ namespace CountTokens.Internal
             if (pages <= 0)
                 pages = 1;
 
-            int pageBased = pages * 258;
+            int pageBased = pages * 260;
 
             double bytesPerPage = bytes.Length / (double)pages;
-            if (bytesPerPage > 120_000)
+            if (bytesPerPage > 80_000)
             {
-                int bytesBased = (int)Math.Ceiling(bytes.Length / 496d);
+                int bytesBased = (int)Math.Ceiling(bytes.Length / 224d);
                 return Math.Max(pageBased, bytesBased);
             }
 

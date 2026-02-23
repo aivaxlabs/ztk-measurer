@@ -7,7 +7,7 @@ namespace CountTokens
     public sealed class QwenV3TokenMeasurer : ITokenMeasurer
     {
         public ValueTask<int> CountTokensAsync(string text)
-            => new(SharedTokenizer.CountTokens(text));
+            => new(SharedTokenizer.CountTokensWithFactor(text, 2.09));
 
         public ValueTask<int> CountTokensAsync(MultimodalContent content)
             => throw new NotSupportedException("This model is text-only.");
