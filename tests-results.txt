@@ -1,0 +1,462 @@
+$ dotnet run --live --all-models
+
+=== [1/9] @google/gemini-2.5-flash-lite ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @google/gemini-2.5-flash-lite
+Measurer: DefaultTokenMeasurer
+Cases: 20
+Parallelism: 6
+[1/9] @google/gemini-2.5-flash-lite | 20/20 done | in-flight 0 | now: mixed-all
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|10|9|-1|90,00%|OK
+text-long|175|173|-2|98,86%|OK
+text-random-20k|5557|5568|11|99,80%|OK
+text-random-35k|9997|10002|5|99,95%|OK
+text-random-50k|14056|14072|16|99,89%|OK
+image-1|259|3293|3034|0,00%|OK
+image-1-detail-low|259|3293|3034|0,00%|OK
+image-1-detail-auto-null|259|3293|3034|0,00%|OK
+image-1-detail-high|259|3293|3034|0,00%|OK
+image-2|266|1262|996|0,00%|OK
+image-3|264|1864|1600|0,00%|OK
+pdf-1|265|1304|1039|0,00%|OK
+pdf-2|2332|2331|-1|99,96%|OK
+pdf-3|13942|13941|-1|99,99%|OK
+audio-1|11311|8866|-2445|78,38%|OK
+audio-2|10825|8486|-2339|78,39%|OK
+video-1|4723|4483|-240|94,92%|OK
+video-2|76700|74022|-2678|96,51%|OK
+video-3|66948|64448|-2500|96,27%|OK
+mixed-all|16551|17941|1390|91,60%|OK
+
+Summary:
+  Ran: 20
+  Skipped: 0
+  Failed: 0
+  Weighted precision: 88,34%
+  Mean precision: 61,23%
+
+
+=== [2/9] @google/gemini-3-flash ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @google/gemini-3-flash
+Measurer: GeminiV3TokenMeasurer
+Cases: 20
+Parallelism: 6
+[2/9] @google/gemini-3-flash | 20/20 done | in-flight 0 | now: audio-2
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|10|9|-1|90,00%|OK
+text-long|175|173|-2|98,86%|OK
+text-random-20k|5557|5568|11|99,80%|OK
+text-random-35k|9997|10002|5|99,95%|OK
+text-random-50k|14056|14072|16|99,89%|OK
+image-1|1072|3293|2221|0,00%|OK
+image-1-detail-low|1072|3293|2221|0,00%|OK
+image-1-detail-auto-null|1072|3293|2221|0,00%|OK
+image-1-detail-high|1072|3293|2221|0,00%|OK
+image-2|1093|1262|169|84,54%|OK
+image-3|1106|1864|758|31,46%|OK
+pdf-1|547|1304|757|0,00%|OK
+pdf-2|4753|2331|-2422|49,04%|OK
+pdf-3|28090|13941|-14149|49,63%|OK
+audio-1|8838|8866|28|99,68%|OK
+audio-2|8459|8486|27|99,68%|OK
+video-1|1454|4483|3029|0,00%|OK
+video-2|23660|74022|50362|0,00%|OK
+video-3|20578|64448|43870|0,00%|OK
+mixed-all|11904|17941|6037|49,29%|OK
+
+Summary:
+  Ran: 20
+  Skipped: 0
+  Failed: 0
+  Weighted precision: 9,71%
+  Mean precision: 47,59%
+
+
+=== [3/9] @anthropic/claude-4.5-haiku ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @anthropic/claude-4.5-haiku
+Measurer: ClaudeV4TokenMeasurer
+Cases: 20
+Parallelism: 6
+[3/9] @anthropic/claude-4.5-haiku | 20/20 done | in-flight 0 | now: image-2
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|16|9|-7|56,25%|OK
+text-long|860|173|-687|20,12%|OK
+text-random-20k|6870|5568|-1302|81,05%|OK
+text-random-35k|12427|10002|-2425|80,49%|OK
+text-random-50k|17465|14072|-3393|80,57%|OK
+image-1|906|3293|2387|0,00%|OK
+image-1-detail-low|906|3293|2387|0,00%|OK
+image-1-detail-auto-null|906|3293|2387|0,00%|OK
+image-1-detail-high|906|3293|2387|0,00%|OK
+image-2|1239|1262|23|98,14%|OK
+image-3|1576|1864|288|81,73%|OK
+pdf-1||1304|||ERROR
+  Error: API error HTTP 500: {"error":{"message":"We got a bad response from the source. Status 400. Error message: {\"error\":{\"code\":\"invalid_request_error\",\"message\":\"messages.0.user.content.str: Input should be a valid string\",\"type\":\"invalid_request_error\",\"param\":null}}","type":"invalid_request_error","param":null,"code":"gateway_error"}}
+pdf-2||2331|||ERROR
+  Error: API error HTTP 500: {"error":{"message":"We got a bad response from the source. Status 400. Error message: {\"error\":{\"code\":\"invalid_request_error\",\"message\":\"messages.0.user.content.str: Input should be a valid string\",\"type\":\"invalid_request_error\",\"param\":null}}","type":"invalid_request_error","param":null,"code":"gateway_error"}}
+pdf-3||13941|||ERROR
+  Error: API error HTTP 500: {"error":{"message":"We got a bad response from the source. Status 400. Error message: {\"error\":{\"code\":\"invalid_request_error\",\"message\":\"messages.0.user.content.str: Input should be a valid string\",\"type\":\"invalid_request_error\",\"param\":null}}","type":"invalid_request_error","param":null,"code":"gateway_error"}}
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 11
+  Skipped: 6
+  Failed: 3
+  Weighted precision: 59,90%
+  Mean precision: 45,30%
+
+
+=== [4/9] @metaai/llama-3.1-8b ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @metaai/llama-3.1-8b
+Measurer: LlamaV3TokenMeasurer
+Cases: 20
+Parallelism: 6
+[4/9] @metaai/llama-3.1-8b | 20/20 done | in-flight 0 | now: text-random-50k
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|88|9|-79|10,23%|OK
+text-long|730|173|-557|23,70%|OK
+text-random-20k|11642|5568|-6074|47,83%|OK
+text-random-35k|20740|10002|-10738|48,23%|OK
+text-random-50k|29190|14072|-15118|48,21%|OK
+image-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-low||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-auto-null||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-high||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+
+Summary:
+  Ran: 5
+  Skipped: 15
+  Failed: 0
+  Weighted precision: 47,80%
+  Mean precision: 35,64%
+
+
+=== [5/9] @metaai/llama-4-scout-17b-16e ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @metaai/llama-4-scout-17b-16e
+Measurer: LlamaV4TokenMeasurer
+Cases: 20
+Parallelism: 6
+[5/9] @metaai/llama-4-scout-17b-16e | 20/20 done | in-flight 0 | now: image-1-detail-low
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|38|9|-29|23,68%|OK
+text-long|368|173|-195|47,01%|OK
+text-random-20k|11128|5568|-5560|50,04%|OK
+text-random-35k|19876|10002|-9874|50,32%|OK
+text-random-50k|27994|14072|-13922|50,27%|OK
+image-1|4958|3293|-1665|66,42%|OK
+image-1-detail-low|4958|3293|-1665|66,42%|OK
+image-1-detail-auto-null|4958|3293|-1665|66,42%|OK
+image-1-detail-high|4958|3293|-1665|66,42%|OK
+image-2|3812|1262|-2550|33,11%|OK
+image-3|4678|1864|-2814|39,85%|OK
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 11
+  Skipped: 9
+  Failed: 0
+  Weighted precision: 52,58%
+  Mean precision: 50,90%
+
+
+=== [6/9] @openai/gpt-5-nano ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @openai/gpt-5-nano
+Measurer: OpenAiV5TokenMeasurer
+Cases: 20
+Parallelism: 6
+[6/9] @openai/gpt-5-nano | 20/20 done | in-flight 0 | now: pdf-3
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|16|9|-7|56,25%|OK
+text-long|337|173|-164|51,34%|OK
+text-random-20k|5575|5568|-7|99,87%|OK
+text-random-35k|10009|10002|-7|99,93%|OK
+text-random-50k|14079|14072|-7|99,95%|OK
+image-1|509|3293|2784|0,00%|OK
+image-1-detail-low|509|3293|2784|0,00%|OK
+image-1-detail-auto-null|509|3293|2784|0,00%|OK
+image-1-detail-high|509|3293|2784|0,00%|OK
+image-2|517|1262|745|0,00%|OK
+image-3|515|1864|1349|0,00%|OK
+pdf-1|516|1304|788|0,00%|OK
+pdf-2|518|2331|1813|0,00%|OK
+pdf-3|518|13941|13423|0,00%|OK
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 14
+  Skipped: 6
+  Failed: 0
+  Weighted precision: 14,98%
+  Mean precision: 29,10%
+
+
+=== [7/9] @openai/gpt-4.1-nano ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @openai/gpt-4.1-nano
+Measurer: OpenAiV4_1TokenMeasurer
+Cases: 20
+Parallelism: 6
+[7/9] @openai/gpt-4.1-nano | 20/20 done | in-flight 0 | now: image-1-detail-low
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|16|9|-7|56,25%|OK
+text-long|337|173|-164|51,34%|OK
+text-random-20k|5575|5568|-7|99,87%|OK
+text-random-35k|10009|10002|-7|99,93%|OK
+text-random-50k|14079|14072|-7|99,95%|OK
+image-1|509|3293|2784|0,00%|OK
+image-1-detail-low|509|3293|2784|0,00%|OK
+image-1-detail-auto-null|509|3293|2784|0,00%|OK
+image-1-detail-high|509|3293|2784|0,00%|OK
+image-2|2298|1262|-1036|54,92%|OK
+image-3|515|1864|1349|0,00%|OK
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model does not support this modality.
+
+Summary:
+  Ran: 11
+  Skipped: 9
+  Failed: 0
+  Weighted precision: 60,67%
+  Mean precision: 42,02%
+
+
+=== [8/9] @openai/gpt-oss-20b ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @openai/gpt-oss-20b
+Measurer: OpenAiOssTokenMeasurer
+Cases: 20
+Parallelism: 6
+[8/9] @openai/gpt-oss-20b | 20/20 done | in-flight 0 | now: text-random-50k
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|160|9|-151|5,63%|OK
+text-long|802|173|-629|21,57%|OK
+text-random-20k|11278|5568|-5710|49,37%|OK
+text-random-35k|20146|10002|-10144|49,65%|OK
+text-random-50k|28286|14072|-14214|49,75%|OK
+image-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-low||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-auto-null||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-high||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+
+Summary:
+  Ran: 5
+  Skipped: 15
+  Failed: 0
+  Weighted precision: 49,16%
+  Mean precision: 35,19%
+
+
+=== [9/9] @qwen/qwen3-32b ===
+Live: True
+Endpoint: https://inference.aivax.net/v1/chat/completions
+Model: @qwen/qwen3-32b
+Measurer: QwenV3TokenMeasurer
+Cases: 20
+Parallelism: 6
+[9/9] @qwen/qwen3-32b | 20/20 done | in-flight 0 | now: text-random-50k
+
+Accuracy results:
+
+Name|ActualPromptTokens|EstimatedPromptTokens|Diff|Precision|Status
+text-short|34|9|-25|26,47%|OK
+text-long|676|173|-503|25,59%|OK
+text-random-20k|11624|5568|-6056|47,90%|OK
+text-random-35k|20804|10002|-10802|48,08%|OK
+text-random-50k|29284|14072|-15212|48,05%|OK
+image-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-low||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-auto-null||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-1-detail-high||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+image-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+pdf-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+audio-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-1||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-2||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+video-3||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+mixed-all||0|||SKIP
+  Skip: Unsupported modality: This model is text-only.
+
+Summary:
+  Ran: 5
+  Skipped: 15
+  Failed: 0
+  Weighted precision: 47,78%
+  Mean precision: 39,22%
+
+
+All-models summary:
+
+|Measurer|Model|Text|Image|Audio|Video|Pdf|Overall|>95%|Ran|Skipped|Failed|
+|---|---|---:|---:|---:|---:|---:|---:|:---:|---:|---:|---:|
+|DefaultTokenMeasurer|@google/gemini-2.5-flash-lite|100%|0%|78%|96%|94%|88%|❌|20|0|0|
+|GeminiV3TokenMeasurer|@google/gemini-3-flash|100%|0%|100%|0%|48%|10%|❌|20|0|0|
+|ClaudeV4TokenMeasurer|@anthropic/claude-4.5-haiku|79%|0%|—|—|—|60%|❌|11|6|3|
+|LlamaV3TokenMeasurer|@metaai/llama-3.1-8b|48%|—|—|—|—|48%|❌|5|15|0|
+|LlamaV4TokenMeasurer|@metaai/llama-4-scout-17b-16e|50%|58%|—|—|—|53%|❌|11|9|0|
+|OpenAiV5TokenMeasurer|@openai/gpt-5-nano|99%|0%|—|—|0%|15%|❌|14|6|0|
+|OpenAiV4_1TokenMeasurer|@openai/gpt-4.1-nano|99%|0%|—|—|—|61%|❌|11|9|0|
+|OpenAiOssTokenMeasurer|@openai/gpt-oss-20b|49%|—|—|—|—|49%|❌|5|15|0|
+|QwenV3TokenMeasurer|@qwen/qwen3-32b|48%|—|—|—|—|48%|❌|5|15|0|

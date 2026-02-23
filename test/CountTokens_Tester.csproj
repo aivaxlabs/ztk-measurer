@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpToken" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lib\CountTokens.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Media\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="CountTokens_Tester.Tests/**/*.cs" />
+    <Compile Remove="CountTokens_Tester.Tests/**" />
+    <None Remove="CountTokens_Tester.Tests/**" />
+    <EmbeddedResource Remove="CountTokens_Tester.Tests/**" />
+  </ItemGroup>
+
+</Project>
